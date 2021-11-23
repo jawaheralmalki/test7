@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
     return Row(
       children: [
         Image(
-          image: AssetImage('images/dice-1.png'),
+          image: AssetImage('images/dice1.png'),
         ),
       ],
     );
