@@ -38,6 +38,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int leftNum = 1;
   int rightNum = 1;
+  void DiceRandom() {
+    leftNum = Random().nextInt(6) + 1;
+    rightNum = Random().nextInt(6) + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -47,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: TextButton(
               onPressed: () {
                 setState(() {
-                  leftNum = Random().nextInt(6) + 1;
+                  DiceRandom();
                 });
               },
               child: Image(
@@ -58,7 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: TextButton(
               onPressed: () {
-                rightNum = Random().nextInt(6) + 1;
+                setState(() {
+                  DiceRandom();
+                });
               },
               child: Image(
                 image: AssetImage('images/dice$rightNum.png'),
