@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text("Dice"),
+          title: const Text("Dice"),
           backgroundColor: Colors.blueGrey[900],
         ),
         body: const MyHomePage(),
@@ -27,33 +28,40 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int leftNum = 1;
+  int rightNum = 1;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Row(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                onPressed: () {},
-                child: const Image(
-                  image: AssetImage('images/dice1.png'),
-                ),
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  leftNum = Random().nextInt(6) + 1;
+                });
+              },
+              child: Image(
+                image: AssetImage('images/dice$leftNum.png'),
               ),
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                onPressed: () {},
-                child: const Image(
-                  image: AssetImage('images/dice1.png'),
-                ),
+            child: TextButton(
+              onPressed: () {
+                rightNum = Random().nextInt(6) + 1;
+              },
+              child: Image(
+                image: AssetImage('images/dice$rightNum.png'),
               ),
             ),
           ),
